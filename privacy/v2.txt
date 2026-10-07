@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Manifest Pro Privacy Policy</title>
+<style>
+  body{max-width:720px;margin:40px auto;padding:0 20px;font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;color:#1f2328;background:#fff}
+  @media (prefers-color-scheme:dark){body{color:#e6edf3;background:#0d1117}a{color:#9b8cff}}
+  h1{font-size:28px;margin-bottom:4px}h2{font-size:19px;margin-top:32px}
+  .d{color:#656d76;font-size:14px}
+  li{margin:4px 0}
+</style></head>
+<body>
+<h1>Manifest Pro Privacy Policy</h1>
+<div class="d">Last updated: October 6, 2026</div>
+
+<p>Manifest Pro ("the extension") is a browser extension that provides AI code suggestions and code actions in GitHub's web editor. This policy explains what data the extension handles. In short: <b>there is no Manifest Pro server, and the developer does not collect, receive or store any of your data.</b></p>
+
+<h2>Data stored on your device</h2>
+<p>The extension saves the following in your browser's local extension storage. It never leaves your device except as described in the next sections.</p>
+<ul>
+  <li>Your GitHub username, avatar URL and sign-in token.</li>
+  <li>The API keys you enter for Groq, Hugging Face and OpenRouter.</li>
+  <li>Your settings, such as the chosen provider and the on/off toggles.</li>
+</ul>
+<p>Logging out removes your sign-in and API keys from the extension. You can also remove individual keys under Manage API keys, or uninstall the extension to delete everything.</p>
+
+<h2>Data sent to AI providers</h2>
+<p>When you type in the GitHub editor and a suggestion is requested, or when you run an action (Explain, Add comments, Fix bug, Write docstring), the extension sends the following to the AI provider you selected, using your own API key:</p>
+<ul>
+  <li>The file name and the code around your cursor (for suggestions), or the code you selected (for actions).</li>
+</ul>
+<p>Only the providers for which you entered a key are contacted. If you enable auto-switch, the request may be sent to your next configured provider when the first one is rate-limited. Providers handle data under their own policies:</p>
+<ul>
+  <li>Groq: <a href="https://groq.com/privacy-policy">groq.com/privacy-policy</a></li>
+  <li>Hugging Face: <a href="https://huggingface.co/privacy">huggingface.co/privacy</a></li>
+  <li>OpenRouter: <a href="https://openrouter.ai/privacy">openrouter.ai/privacy</a></li>
+</ul>
+<p>Please do not use the extension on code you are not allowed to share with these providers. You can turn suggestions off at any time with the "Enable suggestions" switch.</p>
+
+<h2>GitHub sign-in</h2>
+<p>The extension signs you in with GitHub's OAuth device flow and requests only the <code>read:user</code> scope. After sign-in it makes one request to the GitHub API to read your username and avatar for display. The extension does not read your repositories through the GitHub API. It only reads and edits text on the GitHub web page you are using, when you trigger a suggestion or action.</p>
+
+<h2>What we do not do</h2>
+<ul>
+  <li>No analytics, telemetry, tracking or advertising.</li>
+  <li>No selling or sharing of data with third parties.</li>
+  <li>No data collected by the developer.</li>
+  <li>No remote code: all code ships in the extension package.</li>
+</ul>
+
+<h2>Permissions</h2>
+<ul>
+  <li><b>storage</b>: save your settings, sign-in and keys locally.</li>
+  <li><b>contextMenus</b>: add the right-click "Manifest Pro" menu.</li>
+  <li><b>github.com and api.github.com</b>: run in GitHub's editor and sign you in.</li>
+  <li><b>api.groq.com, router.huggingface.co, openrouter.ai</b>: contact the AI provider you chose.</li>
+</ul>
+
+<h2>Children</h2>
+<p>The extension is intended for developers and is not directed at children under 13.</p>
+
+<h2>Changes</h2>
+<p>If this policy changes, the updated version will be posted at this address with a new date.</p>
+
+<h2>Contact</h2>
+<p>Questions: shukdevdatta@gmail.com</p>
+
+<p class="d">Manifest Pro is an independent project and is not affiliated with GitHub, Groq, Hugging Face or OpenRouter.</p>
+</body></html>
