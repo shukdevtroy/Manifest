@@ -26,6 +26,12 @@ nav a.l{color:var(--mu);text-decoration:none;font-size:15px}nav a.l:hover{color:
 .btn{display:inline-block;padding:11px 22px;border-radius:10px;font:600 16px "Bricolage Grotesque",sans-serif;text-decoration:none;border:2px solid var(--ink);color:var(--ink);background:transparent;cursor:pointer}
 .btn.p{background:var(--v);border-color:var(--v);color:#fff}.btn:hover{transform:translateY(-2px)}
 #tg{padding:6px 11px;border-width:1px;border-color:var(--ln)}
+#tg{position:relative}
+#tg:after,#tg:before{position:absolute;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;background:var(--ed);border:1px solid #302c52}
+#tg:after{content:attr(data-tip);top:calc(100% + 11px);right:0;transform:translateY(-6px);white-space:nowrap;color:#fff;font:600 13px "Bricolage Grotesque",sans-serif;padding:7px 12px;border-radius:8px;z-index:3}
+#tg:before{content:"";top:calc(100% + 6px);right:14px;width:9px;height:9px;transform:translateY(-6px) rotate(45deg);border-bottom:0;border-right:0;z-index:4}
+#tg:hover:after,#tg:focus-visible:after{opacity:1;transform:none}
+#tg:hover:before,#tg:focus-visible:before{opacity:1;transform:rotate(45deg)}
 .hero{padding:76px 0 70px}
 .hero .w{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center}
 h1{font-size:clamp(40px,5.6vw,68px);line-height:1.02;letter-spacing:-.04em;font-weight:800;margin-bottom:20px}
@@ -189,7 +195,7 @@ nav a.l.on:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:
 <a class="l" href="#shortcuts">Shortcuts</a>
 <a class="l" href="#faq">FAQ</a>
 <a class="l" href="#install">Install</a>
-<button class="btn" id="tg" aria-label="Toggle light or dark theme">◐</button><a class="ib sm tb" href="#" data-b="chrome" target="_blank" rel="noopener" style="--bc:#4285f4" data-tip="Install Chrome Extension" aria-label="Install Chrome Extension"><svg aria-hidden="true"><use href="#i-chrome"/></svg></a></div></nav>
+<button class="btn" id="tg" aria-label="Toggle light or dark theme">◑</button><a class="ib sm tb" href="#" data-b="chrome" target="_blank" rel="noopener" style="--bc:#4285f4" data-tip="Install Chrome Extension" aria-label="Install Chrome Extension"><svg aria-hidden="true"><use href="#i-chrome"/></svg></a></div></nav>
 
 <header class="hero"><div class="w">
 <div>
@@ -297,9 +303,13 @@ nav a.l.on:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:
 <script>
 var LINKS={chrome:"https://chromewebstore.google.com/detail/manifest-pro/ifhdbcdncchmibipdjeooeohjpdilbbm?authuser=0&hl=en&pli=1",edge:"https://microsoftedge.microsoft.com/addons/detail/manifest-pro/jdokelgamabdedglgddggmgfejehpfhh"}; // replace with your Chrome Web Store and Microsoft Edge Add-ons links
 document.querySelectorAll("a[data-b]").forEach(function(a){a.href=LINKS[a.dataset.b]});
-(function(){var r=document.documentElement,b=document.getElementById("tg");
+(function(){var r=document.documentElement,b=document.getElementById("tg"),mq=matchMedia("(prefers-color-scheme:dark)");
+function cur(){return r.dataset.theme||(mq.matches?"dark":"light")}
+function lab(){var t=cur()==="dark"?"Toggle to light theme":"Toggle to dark theme";b.dataset.tip=t;b.setAttribute("aria-label",t)}
 try{var s=localStorage.getItem("mp-theme");if(s)r.dataset.theme=s}catch(e){}
-b.onclick=function(){var d=r.dataset.theme||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");d=d==="dark"?"light":"dark";r.dataset.theme=d;try{localStorage.setItem("mp-theme",d)}catch(e){}}})();
+b.onclick=function(){var d=cur()==="dark"?"light":"dark";r.dataset.theme=d;try{localStorage.setItem("mp-theme",d)}catch(e){}lab()};
+if(mq.addEventListener)mq.addEventListener("change",lab);
+lab()})();
 (function(){var d=document,pb=d.getElementById("pb"),tp=d.getElementById("top"),t=0;
 function f(){t=0;var y=window.scrollY,h=d.documentElement.scrollHeight-innerHeight;pb.style.transform="scaleX("+(h>0?Math.min(y/h,1):0)+")";tp.classList.toggle("show",y>500)}
 addEventListener("scroll",function(){t||(t=requestAnimationFrame(f))},{passive:true});f();
